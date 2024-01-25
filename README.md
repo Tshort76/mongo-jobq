@@ -1,2 +1,2 @@
-# mongo-jobq
-MongoDB based distributed job processing system written in Clojure
+# Mongo-jobq
+A robust, distributed job processing system that uses MongoDB as its persistence layer.  The compute load is distributed over many worker nodes and coordination happens via a mongo collection.  When deployed and executed, a RESTful webservice is started that acts as a machine supervisor and can be used to assess the state of the worker as well as to cancel or list jobs that are running on the machine.  The actual job processing is done by consumer threads, which polls a jobs queue, implemented as a mongo collection using find-and-modify for atomic request/lock functionality.  Workers each have an ID and configs for each worker are stored in mongo and can be configured there as well.  To scale the compute of your job system, deploy more instances of the workers or increase worker thread count in the configs.
